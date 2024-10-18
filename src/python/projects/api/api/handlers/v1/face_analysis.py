@@ -2,9 +2,15 @@ from fastapi import APIRouter
 router = APIRouter()
 
 
-from fastapi import APIRouter, UploadFile, File, HTTPException, BackgroundTasks
+from fastapi import APIRouter, UploadFile, File, HTTPException, BackgroundTasks, Form
 from typing import Dict
 from vision.main import analyze_face_task
+from pydantic import BaseModel, Json
+
+
+class CallbackInfo(BaseModel):
+    callback_url: str  # Callback URL
+    other_info: str    # Additional info as needed
 
 
 # Temporary storage for results (in a production system, use a database)
@@ -12,17 +18,19 @@ results_store: Dict[str, dict] = {}
 
 @router.post("/analyze-face/")
 async def analyze_face(
+        callback_info: Json[CallbackInfo] = None,
+        file: UploadFile = File(...),
 
-        file: UploadFile = File(...)):
+        ):
+
+
     """API to receive a PNG image and send it to Celery."""
-    if file.content_type != "image/png":
-        raise HTTPException(status_code=400, detail="Only PNG files are supported.")
 
     # Read the image bytes from the file
     image_bytes = await file.read()
 
     # Prepare the callback URL (local FastAPI callback endpoint)
-    callback_url = "http://localhost:5000"
+    callback_url = callback_info.callback_url
 
     # Register the Celery task with the image bytes and callback URL
     analyze_face_task.delay(image_bytes, callback_url)

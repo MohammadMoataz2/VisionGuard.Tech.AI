@@ -36,7 +36,7 @@ def analyze_face_task(image_bytes: bytes, callback_url: str):
         result = {"face_detected": face_detected}
 
     # Send the result to the callback endpoint
-    callback_url = "http://localhost:5000/callback"
+
     response = requests.post(callback_url, json={"task_id": analyze_face_task.request.id, "result": result})
 
     if response.status_code == 200:
