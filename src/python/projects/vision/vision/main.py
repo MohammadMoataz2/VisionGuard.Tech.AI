@@ -1,9 +1,12 @@
-
 from celery import Celery
 import numpy as np
 import requests
 import cv2
-
+import logging
+from pydantic import BaseModel
+# Configure logging
+logging.basicConfig(level=logging.INFO)
+logger = logging.getLogger(__name__)
 
 # Configure Celery to use Redis as the broker
 celery_app = Celery(
@@ -12,8 +15,16 @@ celery_app = Celery(
     backend='redis://localhost:6379/0'
 )
 
+class CallbackInfo(BaseModel):
+    callback_url: str  # Callback URL
+    other_info: str
+    immediately: bool
+    # Additional info as needed
+
+
+
 @celery_app.task(name="vision.main.analyze_face_task")
-def analyze_face_task(image_bytes: bytes, callback_url: str):
+def analyze_face_task(image_bytes: bytes, callback_info):
     """Analyze the image and send the result to the callback URL."""
     # Convert image bytes to a NumPy array
     np_arr = np.frombuffer(image_bytes, np.uint8)
@@ -35,12 +46,16 @@ def analyze_face_task(image_bytes: bytes, callback_url: str):
         face_detected = len(faces) > 0
         result = {"face_detected": face_detected}
 
+
+
+    if callback_info.immediately == True:
+        return result
+
     # Send the result to the callback endpoint
+    logger.info(f"Sending callback to {callback_info.callback_info} with result: {result}")
 
-    response = requests.post(callback_url, json={"task_id": analyze_face_task.request.id, "result": result})
+    try:
+        response = requests.post(callback_info.callback_url, json={"task_id": analyze_face_task.request.id, "result": face_detected})
 
-    if response.status_code == 200:
-        print("Callback sent successfully.")
-    else:
-        print("Failed to send callback.")
-
+    except:
+       print("here")
