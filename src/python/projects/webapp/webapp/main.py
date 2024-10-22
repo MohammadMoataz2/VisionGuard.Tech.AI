@@ -1,11 +1,10 @@
+import os
+from dotenv import load_dotenv
+
+load_dotenv()
 
 import streamlit as st
 import cv2
-import numpy as np
-import streamlit as st
-import cv2
-import numpy as np
-from PIL import Image
 import requests
 import json
 import io
@@ -86,8 +85,10 @@ def home_page():
             st.session_state.page = "webcam"
 def webcam_page():
     # FastAPI server details
-    API_URL = "http://localhost:8011/api/v1/face_analysis/analyze-face/"
-    AUTH = ("Foo", "Bar")  # HTTP Basic authentication credentials
+
+    # FastAPI server details
+    API_URL = os.getenv("API_URL", "http://localhost:8011/api/v1/face_analysis/analyze-face/")
+    AUTH = (os.getenv("AUTH_USER", "Foo"), os.getenv("AUTH_PASS", "Bar"))  # HTTP Basic authentication credentials
 
     # Callback info to be sent with the image
     CALLBACK_INFO = {

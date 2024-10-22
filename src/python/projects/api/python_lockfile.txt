@@ -11,12 +11,14 @@
 //   "generated_with_requirements": [
 //     "annotated-types==0.7.0",
 //     "anyio==4.6.0",
+//     "celery",
 //     "click==8.1.7",
 //     "fastapi==0.115.0",
 //     "h11==0.14.0",
 //     "idna==3.10",
 //     "pydantic==2.9.2",
 //     "pydantic_core==2.23.4",
+//     "pydantic_settings",
 //     "sniffio==1.3.1",
 //     "starlette==0.38.6",
 //     "typing_extensions==4.12.2",
@@ -38,6 +40,26 @@
   "locked_resolves": [
     {
       "locked_requirements": [
+        {
+          "artifacts": [
+            {
+              "algorithm": "sha256",
+              "hash": "827cb12fb0baa892aad844fd95258143bce4027fdac4fccddbc43330fd281637",
+              "url": "https://files.pythonhosted.org/packages/b3/f0/8e5be5d5e0653d9e1d02b1144efa33ff7d2963dfad07049e02c0fa9b2e8d/amqp-5.2.0-py3-none-any.whl"
+            },
+            {
+              "algorithm": "sha256",
+              "hash": "a1ecff425ad063ad42a486c902807d1482311481c8ad95a72694b2975e75f7fd",
+              "url": "https://files.pythonhosted.org/packages/32/2c/6eb09fbdeb3c060b37bd33f8873832897a83e7a428afe01aad333fc405ec/amqp-5.2.0.tar.gz"
+            }
+          ],
+          "project_name": "amqp",
+          "requires_dists": [
+            "vine<6.0.0,>=5.0.0"
+          ],
+          "requires_python": ">=3.6",
+          "version": "5.2.0"
+        },
         {
           "artifacts": [
             {
@@ -99,6 +121,92 @@
           "artifacts": [
             {
               "algorithm": "sha256",
+              "hash": "40b59a4ac8806ba2c2369ea98d876bc6108b051c227baffd928c644d15d8f3cb",
+              "url": "https://files.pythonhosted.org/packages/30/da/43b15f28fe5f9e027b41c539abc5469052e9d48fd75f8ff094ba2a0ae767/billiard-4.2.1-py3-none-any.whl"
+            },
+            {
+              "algorithm": "sha256",
+              "hash": "12b641b0c539073fc8d3f5b8b7be998956665c4233c7c1fcd66a7e677c4fb36f",
+              "url": "https://files.pythonhosted.org/packages/7c/58/1546c970afcd2a2428b1bfafecf2371d8951cc34b46701bea73f4280989e/billiard-4.2.1.tar.gz"
+            }
+          ],
+          "project_name": "billiard",
+          "requires_dists": [],
+          "requires_python": ">=3.7",
+          "version": "4.2.1"
+        },
+        {
+          "artifacts": [
+            {
+              "algorithm": "sha256",
+              "hash": "369631eb580cf8c51a82721ec538684994f8277637edde2dfc0dacd73ed97f64",
+              "url": "https://files.pythonhosted.org/packages/90/c4/6a4d3772e5407622feb93dd25c86ce3c0fee746fa822a777a627d56b4f2a/celery-5.4.0-py3-none-any.whl"
+            },
+            {
+              "algorithm": "sha256",
+              "hash": "504a19140e8d3029d5acad88330c541d4c3f64c789d85f94756762d8bca7e706",
+              "url": "https://files.pythonhosted.org/packages/8a/9c/cf0bce2cc1c8971bf56629d8f180e4ca35612c7e79e6e432e785261a8be4/celery-5.4.0.tar.gz"
+            }
+          ],
+          "project_name": "celery",
+          "requires_dists": [
+            "Django>=2.2.28; extra == \"django\"",
+            "PyYAML>=3.10; extra == \"yaml\"",
+            "azure-storage-blob>=12.15.0; extra == \"azureblockblob\"",
+            "backports.zoneinfo>=0.2.1; python_version < \"3.9\"",
+            "billiard<5.0,>=4.2.0",
+            "boto3>=1.26.143; extra == \"dynamodb\"",
+            "boto3>=1.26.143; extra == \"s3\"",
+            "boto3>=1.26.143; extra == \"sqs\"",
+            "brotli>=1.0.0; platform_python_implementation == \"CPython\" and extra == \"brotli\"",
+            "brotlipy>=0.7.0; platform_python_implementation == \"PyPy\" and extra == \"brotli\"",
+            "cassandra-driver<4,>=3.25.0; extra == \"cassandra\"",
+            "click-didyoumean>=0.3.0",
+            "click-plugins>=1.1.1",
+            "click-repl>=0.2.0",
+            "click<9.0,>=8.1.2",
+            "couchbase>=3.0.0; (platform_python_implementation != \"PyPy\" and (platform_system != \"Windows\" or python_version < \"3.10\")) and extra == \"couchbase\"",
+            "cryptography==42.0.5; extra == \"auth\"",
+            "elastic-transport<=8.13.0; extra == \"elasticsearch\"",
+            "elasticsearch<=8.13.0; extra == \"elasticsearch\"",
+            "ephem==4.1.5; platform_python_implementation != \"PyPy\" and extra == \"solar\"",
+            "eventlet>=0.32.0; python_version < \"3.10\" and extra == \"eventlet\"",
+            "gevent>=1.5.0; extra == \"gevent\"",
+            "google-cloud-storage>=2.10.0; extra == \"gcs\"",
+            "importlib-metadata>=3.6; python_version < \"3.8\"",
+            "kazoo>=1.3.1; extra == \"zookeeper\"",
+            "kombu<6.0,>=5.3.4",
+            "kombu[sqs]>=5.3.4; extra == \"sqs\"",
+            "librabbitmq>=2.0.0; python_version < \"3.11\" and extra == \"librabbitmq\"",
+            "msgpack==1.0.8; extra == \"msgpack\"",
+            "pyArango>=2.0.2; extra == \"arangodb\"",
+            "pycouchdb==1.14.2; extra == \"couchdb\"",
+            "pycurl>=7.43.0.5; (sys_platform != \"win32\" and platform_python_implementation == \"CPython\") and extra == \"sqs\"",
+            "pydocumentdb==2.3.5; extra == \"cosmosdbsql\"",
+            "pylibmc==1.6.3; platform_system != \"Windows\" and extra == \"memcache\"",
+            "pymongo[srv]>=4.0.2; extra == \"mongodb\"",
+            "pyro4==4.82; python_version < \"3.11\" and extra == \"pyro\"",
+            "pytest-celery[all]>=1.0.0; extra == \"pytest\"",
+            "python-consul2==0.1.5; extra == \"consul\"",
+            "python-dateutil>=2.8.2",
+            "python-memcached>=1.61; extra == \"pymemcache\"",
+            "redis!=4.5.5,<6.0.0,>=4.5.2; extra == \"redis\"",
+            "softlayer-messaging>=1.0.3; extra == \"slmq\"",
+            "sqlalchemy<2.1,>=1.4.48; extra == \"sqlalchemy\"",
+            "tblib>=1.3.0; python_version < \"3.8.0\" and extra == \"tblib\"",
+            "tblib>=1.5.0; python_version >= \"3.8.0\" and extra == \"tblib\"",
+            "tzdata>=2022.7",
+            "urllib3>=1.26.16; extra == \"sqs\"",
+            "vine<6.0,>=5.1.0",
+            "zstandard==0.22.0; extra == \"zstd\""
+          ],
+          "requires_python": ">=3.8",
+          "version": "5.4.0"
+        },
+        {
+          "artifacts": [
+            {
+              "algorithm": "sha256",
               "hash": "ae74fb96c20a0277a1d615f1e4d73c8414f5a98db8b799a7931d1582f3390c28",
               "url": "https://files.pythonhosted.org/packages/00/2e/d53fa4befbf2cfa713304affc7ca780ce4fc1fd8710527771b58311a3229/click-8.1.7-py3-none-any.whl"
             },
@@ -115,6 +223,74 @@
           ],
           "requires_python": ">=3.7",
           "version": "8.1.7"
+        },
+        {
+          "artifacts": [
+            {
+              "algorithm": "sha256",
+              "hash": "5c4bb6007cfea5f2fd6583a2fb6701a22a41eb98957e63d0fac41c10e7c3117c",
+              "url": "https://files.pythonhosted.org/packages/1b/5b/974430b5ffdb7a4f1941d13d83c64a0395114503cc357c6b9ae4ce5047ed/click_didyoumean-0.3.1-py3-none-any.whl"
+            },
+            {
+              "algorithm": "sha256",
+              "hash": "4f82fdff0dbe64ef8ab2279bd6aa3f6a99c3b28c05aa09cbfc07c9d7fbb5a463",
+              "url": "https://files.pythonhosted.org/packages/30/ce/217289b77c590ea1e7c24242d9ddd6e249e52c795ff10fac2c50062c48cb/click_didyoumean-0.3.1.tar.gz"
+            }
+          ],
+          "project_name": "click-didyoumean",
+          "requires_dists": [
+            "click>=7"
+          ],
+          "requires_python": ">=3.6.2",
+          "version": "0.3.1"
+        },
+        {
+          "artifacts": [
+            {
+              "algorithm": "sha256",
+              "hash": "5d262006d3222f5057fd81e1623d4443e41dcda5dc815c06b442aa3c02889fc8",
+              "url": "https://files.pythonhosted.org/packages/e9/da/824b92d9942f4e472702488857914bdd50f73021efea15b4cad9aca8ecef/click_plugins-1.1.1-py2.py3-none-any.whl"
+            },
+            {
+              "algorithm": "sha256",
+              "hash": "46ab999744a9d831159c3411bb0c79346d94a444df9a3a3742e9ed63645f264b",
+              "url": "https://files.pythonhosted.org/packages/5f/1d/45434f64ed749540af821fd7e42b8e4d23ac04b1eda7c26613288d6cd8a8/click-plugins-1.1.1.tar.gz"
+            }
+          ],
+          "project_name": "click-plugins",
+          "requires_dists": [
+            "click>=4.0",
+            "coveralls; extra == \"dev\"",
+            "pytest-cov; extra == \"dev\"",
+            "pytest>=3.6; extra == \"dev\"",
+            "wheel; extra == \"dev\""
+          ],
+          "requires_python": null,
+          "version": "1.1.1"
+        },
+        {
+          "artifacts": [
+            {
+              "algorithm": "sha256",
+              "hash": "fb7e06deb8da8de86180a33a9da97ac316751c094c6899382da7feeeeb51b812",
+              "url": "https://files.pythonhosted.org/packages/52/40/9d857001228658f0d59e97ebd4c346fe73e138c6de1bce61dc568a57c7f8/click_repl-0.3.0-py3-none-any.whl"
+            },
+            {
+              "algorithm": "sha256",
+              "hash": "17849c23dba3d667247dc4defe1757fff98694e90fe37474f3feebb69ced26a9",
+              "url": "https://files.pythonhosted.org/packages/cb/a2/57f4ac79838cfae6912f997b4d1a64a858fb0c86d7fcaae6f7b58d267fca/click-repl-0.3.0.tar.gz"
+            }
+          ],
+          "project_name": "click-repl",
+          "requires_dists": [
+            "click>=7.0",
+            "prompt-toolkit>=3.0.36",
+            "pytest-cov>=4.0.0; extra == \"testing\"",
+            "pytest>=7.2.1; extra == \"testing\"",
+            "tox>=4.4.3; extra == \"testing\""
+          ],
+          "requires_python": ">=3.6",
+          "version": "0.3.0"
         },
         {
           "artifacts": [
@@ -198,6 +374,69 @@
           ],
           "requires_python": ">=3.6",
           "version": "3.10"
+        },
+        {
+          "artifacts": [
+            {
+              "algorithm": "sha256",
+              "hash": "14212f5ccf022fc0a70453bb025a1dcc32782a588c49ea866884047d66e14763",
+              "url": "https://files.pythonhosted.org/packages/87/ec/7811a3cf9fdfee3ee88e54d08fcbc3fabe7c1b6e4059826c59d7b795651c/kombu-5.4.2-py3-none-any.whl"
+            },
+            {
+              "algorithm": "sha256",
+              "hash": "eef572dd2fd9fc614b37580e3caeafdd5af46c1eff31e7fba89138cdb406f2cf",
+              "url": "https://files.pythonhosted.org/packages/38/4d/b93fcb353d279839cc35d0012bee805ed0cf61c07587916bfc35dbfddaf1/kombu-5.4.2.tar.gz"
+            }
+          ],
+          "project_name": "kombu",
+          "requires_dists": [
+            "PyYAML>=3.10; extra == \"yaml\"",
+            "amqp<6.0.0,>=5.1.1",
+            "azure-identity>=1.12.0; extra == \"azurestoragequeues\"",
+            "azure-servicebus>=7.10.0; extra == \"azureservicebus\"",
+            "azure-storage-queue>=12.6.0; extra == \"azurestoragequeues\"",
+            "backports.zoneinfo[tzdata]>=0.2.1; python_version < \"3.9\"",
+            "boto3>=1.26.143; extra == \"sqs\"",
+            "confluent-kafka>=2.2.0; extra == \"confluentkafka\"",
+            "kazoo>=2.8.0; extra == \"zookeeper\"",
+            "librabbitmq>=2.0.0; python_version < \"3.11\" and extra == \"librabbitmq\"",
+            "msgpack==1.1.0; extra == \"msgpack\"",
+            "pycurl>=7.43.0.5; (sys_platform != \"win32\" and platform_python_implementation == \"CPython\") and extra == \"sqs\"",
+            "pymongo>=4.1.1; extra == \"mongodb\"",
+            "pyro4==4.82; extra == \"pyro\"",
+            "python-consul2==0.1.5; extra == \"consul\"",
+            "qpid-python>=0.26; extra == \"qpid\"",
+            "qpid-tools>=0.26; extra == \"qpid\"",
+            "redis!=4.5.5,!=5.0.2,>=4.5.2; extra == \"redis\"",
+            "softlayer-messaging>=1.0.3; extra == \"slmq\"",
+            "sqlalchemy<2.1,>=1.4.48; extra == \"sqlalchemy\"",
+            "typing-extensions==4.12.2; python_version < \"3.10\"",
+            "tzdata; python_version >= \"3.9\"",
+            "urllib3>=1.26.16; extra == \"sqs\"",
+            "vine==5.1.0"
+          ],
+          "requires_python": ">=3.8",
+          "version": "5.4.2"
+        },
+        {
+          "artifacts": [
+            {
+              "algorithm": "sha256",
+              "hash": "f49a827f90062e411f1ce1f854f2aedb3c23353244f8108b89283587397ac10e",
+              "url": "https://files.pythonhosted.org/packages/a9/6a/fd08d94654f7e67c52ca30523a178b3f8ccc4237fce4be90d39c938a831a/prompt_toolkit-3.0.48-py3-none-any.whl"
+            },
+            {
+              "algorithm": "sha256",
+              "hash": "d6623ab0477a80df74e646bdbc93621143f5caf104206aa29294d53de1a03d90",
+              "url": "https://files.pythonhosted.org/packages/2d/4f/feb5e137aff82f7c7f3248267b97451da3644f6cdc218edfe549fb354127/prompt_toolkit-3.0.48.tar.gz"
+            }
+          ],
+          "project_name": "prompt-toolkit",
+          "requires_dists": [
+            "wcwidth"
+          ],
+          "requires_python": ">=3.7.0",
+          "version": "3.0.48"
         },
         {
           "artifacts": [
@@ -293,6 +532,89 @@
           "artifacts": [
             {
               "algorithm": "sha256",
+              "hash": "4a819166f119b74d7f8c765196b165f95cc7487ce58ea27dec8a5a26be0970e0",
+              "url": "https://files.pythonhosted.org/packages/34/19/26bb6bdb9fdad5f0dfce538780814084fb667b4bc37fcb28459c14b8d3b5/pydantic_settings-2.6.0-py3-none-any.whl"
+            },
+            {
+              "algorithm": "sha256",
+              "hash": "44a1804abffac9e6a30372bb45f6cafab945ef5af25e66b1c634c01dd39e0188",
+              "url": "https://files.pythonhosted.org/packages/6c/66/5f1a9da10675bfb3b9da52f5b689c77e0a5612263fcce510cfac3e99a168/pydantic_settings-2.6.0.tar.gz"
+            }
+          ],
+          "project_name": "pydantic-settings",
+          "requires_dists": [
+            "azure-identity>=1.16.0; extra == \"azure-key-vault\"",
+            "azure-keyvault-secrets>=4.8.0; extra == \"azure-key-vault\"",
+            "pydantic>=2.7.0",
+            "python-dotenv>=0.21.0",
+            "pyyaml>=6.0.1; extra == \"yaml\"",
+            "tomli>=2.0.1; extra == \"toml\""
+          ],
+          "requires_python": ">=3.8",
+          "version": "2.6.0"
+        },
+        {
+          "artifacts": [
+            {
+              "algorithm": "sha256",
+              "hash": "a8b2bc7bffae282281c8140a97d3aa9c14da0b136dfe83f850eea9a5f7470427",
+              "url": "https://files.pythonhosted.org/packages/ec/57/56b9bcc3c9c6a792fcbaf139543cee77261f3651ca9da0c93f5c1221264b/python_dateutil-2.9.0.post0-py2.py3-none-any.whl"
+            },
+            {
+              "algorithm": "sha256",
+              "hash": "37dd54208da7e1cd875388217d5e00ebd4179249f90fb72437e91a35459a0ad3",
+              "url": "https://files.pythonhosted.org/packages/66/c0/0c8b6ad9f17a802ee498c46e004a0eb49bc148f2fd230864601a86dcf6db/python-dateutil-2.9.0.post0.tar.gz"
+            }
+          ],
+          "project_name": "python-dateutil",
+          "requires_dists": [
+            "six>=1.5"
+          ],
+          "requires_python": "!=3.0.*,!=3.1.*,!=3.2.*,>=2.7",
+          "version": "2.9.0.post0"
+        },
+        {
+          "artifacts": [
+            {
+              "algorithm": "sha256",
+              "hash": "f7b63ef50f1b690dddf550d03497b66d609393b40b564ed0d674909a68ebf16a",
+              "url": "https://files.pythonhosted.org/packages/6a/3e/b68c118422ec867fa7ab88444e1274aa40681c606d59ac27de5a5588f082/python_dotenv-1.0.1-py3-none-any.whl"
+            },
+            {
+              "algorithm": "sha256",
+              "hash": "e324ee90a023d808f1959c46bcbc04446a10ced277783dc6ee09987c37ec10ca",
+              "url": "https://files.pythonhosted.org/packages/bc/57/e84d88dfe0aec03b7a2d4327012c1627ab5f03652216c63d49846d7a6c58/python-dotenv-1.0.1.tar.gz"
+            }
+          ],
+          "project_name": "python-dotenv",
+          "requires_dists": [
+            "click>=5.0; extra == \"cli\""
+          ],
+          "requires_python": ">=3.8",
+          "version": "1.0.1"
+        },
+        {
+          "artifacts": [
+            {
+              "algorithm": "sha256",
+              "hash": "8abb2f1d86890a2dfb989f9a77cfcfd3e47c2a354b01111771326f8aa26e0254",
+              "url": "https://files.pythonhosted.org/packages/d9/5a/e7c31adbe875f2abbb91bd84cf2dc52d792b5a01506781dbcf25c91daf11/six-1.16.0-py2.py3-none-any.whl"
+            },
+            {
+              "algorithm": "sha256",
+              "hash": "1e61c37477a1626458e36f7b1d82aa5c9b094fa4802892072e49de9c60c4c926",
+              "url": "https://files.pythonhosted.org/packages/71/39/171f1c67cd00715f190ba0b100d606d440a28c93c7714febeca8b79af85e/six-1.16.0.tar.gz"
+            }
+          ],
+          "project_name": "six",
+          "requires_dists": [],
+          "requires_python": "!=3.0.*,!=3.1.*,!=3.2.*,>=2.7",
+          "version": "1.16.0"
+        },
+        {
+          "artifacts": [
+            {
+              "algorithm": "sha256",
               "hash": "2f6da418d1f1e0fddd844478f41680e794e6051915791a034ff65e5f100525a2",
               "url": "https://files.pythonhosted.org/packages/e9/44/75a9c9421471a6c4805dbf2356f7c181a29c1879239abab1ea2cc8f38b40/sniffio-1.3.1-py3-none-any.whl"
             },
@@ -355,6 +677,24 @@
           "artifacts": [
             {
               "algorithm": "sha256",
+              "hash": "a48093786cdcde33cad18c2555e8532f34422074448fbc874186f0abd79565cd",
+              "url": "https://files.pythonhosted.org/packages/a6/ab/7e5f53c3b9d14972843a647d8d7a853969a58aecc7559cb3267302c94774/tzdata-2024.2-py2.py3-none-any.whl"
+            },
+            {
+              "algorithm": "sha256",
+              "hash": "7d85cc416e9382e69095b7bdf4afd9e3880418a2413feec7069d533d6b4e31cc",
+              "url": "https://files.pythonhosted.org/packages/e1/34/943888654477a574a86a98e9896bae89c7aa15078ec29f490fef2f1e5384/tzdata-2024.2.tar.gz"
+            }
+          ],
+          "project_name": "tzdata",
+          "requires_dists": [],
+          "requires_python": ">=2",
+          "version": "2024.2"
+        },
+        {
+          "artifacts": [
+            {
+              "algorithm": "sha256",
               "hash": "adc42d9cac80cf3e51af97c1851648066841e7cfb6993a4ca8de29ac1548ed41",
               "url": "https://files.pythonhosted.org/packages/3c/55/37407280931038a3f21fa0245d60edeaa76f18419581aa3f4397761c78df/uvicorn-0.31.1-py3-none-any.whl"
             },
@@ -379,6 +719,44 @@
           ],
           "requires_python": ">=3.8",
           "version": "0.31.1"
+        },
+        {
+          "artifacts": [
+            {
+              "algorithm": "sha256",
+              "hash": "40fdf3c48b2cfe1c38a49e9ae2da6fda88e4794c810050a728bd7413811fb1dc",
+              "url": "https://files.pythonhosted.org/packages/03/ff/7c0c86c43b3cbb927e0ccc0255cb4057ceba4799cd44ae95174ce8e8b5b2/vine-5.1.0-py3-none-any.whl"
+            },
+            {
+              "algorithm": "sha256",
+              "hash": "8b62e981d35c41049211cf62a0a1242d8c1ee9bd15bb196ce38aefd6799e61e0",
+              "url": "https://files.pythonhosted.org/packages/bd/e4/d07b5f29d283596b9727dd5275ccbceb63c44a1a82aa9e4bfd20426762ac/vine-5.1.0.tar.gz"
+            }
+          ],
+          "project_name": "vine",
+          "requires_dists": [],
+          "requires_python": ">=3.6",
+          "version": "5.1.0"
+        },
+        {
+          "artifacts": [
+            {
+              "algorithm": "sha256",
+              "hash": "3da69048e4540d84af32131829ff948f1e022c1c6bdb8d6102117aac784f6859",
+              "url": "https://files.pythonhosted.org/packages/fd/84/fd2ba7aafacbad3c4201d395674fc6348826569da3c0937e75505ead3528/wcwidth-0.2.13-py2.py3-none-any.whl"
+            },
+            {
+              "algorithm": "sha256",
+              "hash": "72ea0c06399eb286d978fdedb6923a9eb47e1c486ce63e9b4e64fc18303972b5",
+              "url": "https://files.pythonhosted.org/packages/6c/63/53559446a878410fc5a5974feb13d31d78d752eb18aeba59c7fef1af7598/wcwidth-0.2.13.tar.gz"
+            }
+          ],
+          "project_name": "wcwidth",
+          "requires_dists": [
+            "backports.functools-lru-cache>=1.2.1; python_version < \"3.2\""
+          ],
+          "requires_python": null,
+          "version": "0.2.13"
         }
       ],
       "platform_tag": null
@@ -391,12 +769,14 @@
   "requirements": [
     "annotated-types==0.7.0",
     "anyio==4.6.0",
+    "celery",
     "click==8.1.7",
     "fastapi==0.115.0",
     "h11==0.14.0",
     "idna==3.10",
     "pydantic==2.9.2",
     "pydantic_core==2.23.4",
+    "pydantic_settings",
     "sniffio==1.3.1",
     "starlette==0.38.6",
     "typing_extensions==4.12.2",

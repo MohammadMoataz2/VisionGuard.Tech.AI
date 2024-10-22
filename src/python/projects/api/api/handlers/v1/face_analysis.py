@@ -1,5 +1,4 @@
 from fastapi import APIRouter, UploadFile, File, HTTPException, BackgroundTasks, Form
-from vision.main import analyze_face_task
 from pydantic import BaseModel, Json
 
 router = APIRouter()
@@ -21,10 +20,9 @@ async def analyze_face(
     image_bytes = await file.read()
 
     if callback_info.immediately == True:
-        return analyze_face_task(image_bytes, callback_info)
+        result = requests.post("http://localhost:5000/process-data", json={"data": data})
+        return
 
-
-    analyze_face_task.delay(image_bytes, callback_info)
 
     return {"message": "Task registered successfully"}
 

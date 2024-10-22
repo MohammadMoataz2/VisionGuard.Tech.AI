@@ -19,6 +19,8 @@ class Settings(BaseSettings):
     DB_MIN_CONNECTIONS: int = 10
     DB_INIT_DURING_STARTUP: bool = True
 
+    WORKER_URL: str = "http://localhost:5000"
+
     LOGGER_PREFIX: str = ""
 
 

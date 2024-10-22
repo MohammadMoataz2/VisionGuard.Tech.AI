@@ -20,12 +20,17 @@ interpreter_constraints = ["==3.11.*"]
 
 [python.resolves]
 project_api = "src/python/projects/api/python_lockfile.txt"
+project_webapp = "src/python/projects/webapp/python_lockfile.txt"
+project_vision = "src/python/projects/vision/python_lockfile.txt"
 
 [source]
 root_patterns = [
   "/src/python/libs/common",
 
   "/src/python/projects/api",
+  "/src/python/projects/vision",
+  "/src/python/projects/webapp",
+
 ]
 
 
