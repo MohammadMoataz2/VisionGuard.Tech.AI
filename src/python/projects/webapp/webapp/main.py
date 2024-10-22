@@ -1,3 +1,4 @@
+
 import streamlit as st
 import cv2
 import numpy as np
@@ -83,11 +84,7 @@ def home_page():
             # Update the session state to show the webcam page
             st.session_state.welcome_displayed = True
             st.session_state.page = "webcam"
-
-# Function to display the webcam page and capture frames
 def webcam_page():
-
-
     # FastAPI server details
     API_URL = "http://localhost:8011/api/v1/face_analysis/analyze-face/"
     AUTH = ("Foo", "Bar")  # HTTP Basic authentication credentials
@@ -136,6 +133,41 @@ def webcam_page():
     # Set up Streamlit app
     st.title("Real-time Face Detection with Webcam")
 
+    # Add title section at the top with styling
+    st.markdown(
+        """
+        <style>
+        .webcam-title {
+            font-size: 70px;
+            font-weight: 800;
+            color: #C0C0C0;  /* Silver */
+            font-family: 'Arial', sans-serif;
+            text-shadow: 3px 3px rgba(0, 0, 0, 0.25);
+            text-align: center;
+            margin-top: 20px;
+            margin-bottom: 20px;
+        }
+        .instruction-text {
+            font-size: 24px;
+            color: #FFFFFF; /* White */
+            text-align: center;
+            margin-top: 10px;
+            margin-bottom: 20px;
+        }
+        </style>
+        """,
+        unsafe_allow_html=True
+    )
+
+    # Create columns for centering content and title
+    col1, col2, col3 = st.columns([1, 10, 1])  # Adjust column ratios as needed
+
+    with col2:  # Center column for title
+        st.markdown("<h1 class='webcam-title'>🛡️ Vision Guard</h1>", unsafe_allow_html=True)
+
+    # Instruction message
+    st.markdown("<h2 class='instruction-text'>Please position your face in the box.</h2>", unsafe_allow_html=True)
+
     # Set up video capture
     video_capture = cv2.VideoCapture(0)  # 0 is the default camera
     stframe = st.empty()  # Placeholder for the video frame
@@ -158,11 +190,12 @@ def webcam_page():
         frame_rgb = cv2.cvtColor(frame_with_faces, cv2.COLOR_BGR2RGB)
         stframe.image(frame_rgb, channels="RGB", use_column_width=True)
 
-        # Update detection status in Streamlit
+        # Center the detection status text
         if face_detected:
             detection_text.success("Face Detected")
         else:
             detection_text.warning("No Face Detected")
+
 
     # Release the camera
     video_capture.release()
