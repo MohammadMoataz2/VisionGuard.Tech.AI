@@ -3,6 +3,7 @@ import numpy as np
 import mlflow.pyfunc
 import pandas as pd
 import base64
+
 class CVFaceDetectionModel(mlflow.pyfunc.PythonModel):
     def load_context(self, context):
         # Load the Haar Cascade model for face detection

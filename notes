@@ -1,0 +1,1 @@
+ mlflow models build-docker -m "models:/FaceDetectionModel/1" -n mohammadmoataz777/facedetectionmodel:0.0.1
