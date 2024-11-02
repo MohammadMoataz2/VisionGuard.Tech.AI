@@ -1,0 +1,14 @@
+name: my_mlflow_env2
+channels:
+  - defaults
+dependencies:
+  - python=3.11
+  - numpy
+  - pandas
+  - scikit-learn
+  - mlflow
+  - opencv
+  - pip
+  - pip:
+      - deepface
+      - tf-keras # Add your ML library here

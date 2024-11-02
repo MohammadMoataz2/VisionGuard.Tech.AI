@@ -1,0 +1,62 @@
+# Python cache and compiled files
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+
+# Virtual environment folders
+.venv/
+venv/
+env/
+ENV/
+.venv/
+.venv/*
+
+# MLflow related files and directories
+mlruns/
+artifacts/
+
+# Model storage
+models/
+*.pkl
+*.h5
+*.joblib
+
+# Docker-related files
+*.env
+.dockerignore
+Dockerfile
+
+# Logs and debugging files
+logs/
+*.log
+*.out
+*.err
+
+# Jupyter Notebook checkpoints
+.ipynb_checkpoints/
+
+# OS generated files
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Pytest
+.cache/
+*.pytest_cache
+
+# IDE and editor configuration files
+.vscode/
+.idea/
+
+# Ignore MLflow SQLite database if used
+mlflow.db
+
+# Ignore large datasets if stored locally
+data/
+dataset/
+*.csv
+*.json
+*.xls
+*.xlsx
+*.parquet
