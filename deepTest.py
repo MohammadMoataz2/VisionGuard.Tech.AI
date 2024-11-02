@@ -1,27 +1,21 @@
 import requests
-import cv2
 import base64
+import json
 
-# Prepare the input image
-image_path = "dataset/1.png"
-image = cv2.imread(image_path)
+# Read the image and encode it to base64
+with open("dataset/1.png", "rb") as img_file:
+    encoded_image = base64.b64encode(img_file.read()).decode("utf-8")
 
-# Check if the image was loaded successfully
-if image is None:
-    raise ValueError(f"Error: Could not read the image at {image_path}")
-
-# Encode the image to bytes and then to base64
-_, buffer = cv2.imencode('.jpg', image)
-image_bytes = buffer.tobytes()
-image_base64 = base64.b64encode(image_bytes).decode('utf-8')  # Encode to base64
-
-# Prepare the request payload
-data = {
-    "instances": [{"image_bytes": image_base64}]  # Use base64 encoded string
+# Create the payload in dataframe_split format
+payload = {
+    "dataframe_split": {
+        "columns": ["image_bytes"],
+        "data": [[encoded_image]]
+    }
 }
 
-# Send the request
-response = requests.post("http://localhost:5002/invocations", json=data)
+# Send request to the MLflow model server
+response = requests.post("http://localhost:5003/invocations", json=payload)
 
-# Print the response
-print(response.json())
+# Print the result
+print(json.dumps(response.json(), indent=2))
