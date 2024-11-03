@@ -30,3 +30,4 @@ if __name__ == "__main__":
         mlflow.log_metric("accuracy", 0.95)  # Replace with actual metric if available
 
         print(f"Model logged to MLflow with URI: {df_model_uri}")
+
