@@ -195,7 +195,8 @@ def webcam_page():
         # Center the detection status text
         if face_detected:
             detection_text.success("Face Detected")
-            streamlit_js_eval(js_expressions="parent.window.location.reload()")
+            # streamlit_js_eval(js_expressions="parent.window.location.reload()")
+            break
 
         else:
             detection_text.warning("No Face Detected")
@@ -204,8 +205,17 @@ def webcam_page():
     # Release the camera
     video_capture.release()
 
+    # After detecting the face and before releasing the camera
 
+    col1, col2 = st.columns(2)  # Create two columns for the buttons
 
+    with col1:
+        if st.button("Continue"):
+            st.text("Welcome")  # Show welcome message or redirect to the next page
+
+    with col2:
+        if st.button("Retry"):
+            streamlit_js_eval(js_expressions="parent.window.location.reload()")  # Reload the page
 
 
 # Main app logic
