@@ -39,7 +39,7 @@ class State(rx.State):
                 self.state = True
                 self.color = "green"
                 self.status_text = "Face Detected"
-                self.progress_value += 1
+                self.progress_value += 3
             else:
                 self.state = False
                 self.color = "red"
