@@ -33,7 +33,7 @@ class State(rx.State):
 
             # Simulate face detection for this example
 
-            result = send_to_analyze(image_bytes)
+            result = send_to_analyze(image_bytes, 5020)
             if result["predictions"][0]["face"]:
                 self.state = True
                 self.color = "green"
