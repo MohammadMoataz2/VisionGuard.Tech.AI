@@ -25,11 +25,13 @@ class State(rx.State):
     face_analyze_result: dict = dict()
     analyze_options: bool = False
 
+    loading_screen: bool = False
+
     # Attributes for face analysis results
-    age: str = ""
-    gender: str = ""
-    emotion: str = ""
-    race: str = ""
+    age: str = "20"
+    gender: str = "Man"
+    emotion: str = "happy"
+    race: str = "asian"
 
     def handle_screenshot(self, img_data_uri: str):
         """Handle the webcam screenshot as a base64 URI and process it."""
@@ -52,7 +54,9 @@ class State(rx.State):
 
         # Once the progress reaches 100%, analyze face attributes
         if self.progress_value >= 100 and self.analyze_face_state:
+            self.loading_screen = True
             self.face_analyze_result = send_to_analyze(self.images[0], 5021)
+            self.loading_screen = False
             self.age = str(self.face_analyze_result["predictions"][0]["age"])
             gender_predictions = self.face_analyze_result["predictions"][0]["gender"]
             self.gender = max(gender_predictions, key=gender_predictions.get)  # Most likely gender
