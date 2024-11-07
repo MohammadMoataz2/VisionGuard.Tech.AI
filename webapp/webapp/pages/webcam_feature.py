@@ -7,6 +7,11 @@ from .api_connector import send_to_analyze
 WEBCAM_REF = "webcam"
 
 
+
+
+
+
+
 class State(rx.State):
     state: bool = False
     color: str = "red"
@@ -28,7 +33,7 @@ class State(rx.State):
 
     def handle_screenshot(self, img_data_uri: str):
         """Handle the webcam screenshot as a base64 URI and process it."""
-        if img_data_uri and (self.progress_value < 100):
+        if img_data_uri and (self.progress_value < 100) and not self.face_analyze_result:
             base64_image = img_data_uri.split(",")[1]  # Remove "data:image/jpeg;base64,"
             image_bytes = base64.b64decode(base64_image)
             self.images.append(image_bytes)
@@ -60,6 +65,7 @@ class State(rx.State):
             self.state = True
             self.options_after = True
             self.analyze_options = True
+            self.progress_value = 100
 
     def restart_page(self):
         """Reset the state for a new analysis."""
@@ -72,6 +78,21 @@ class State(rx.State):
         self.send = True
         self.options_after = False
         self.analyze_options = False
+        self.images = []
+        self.face_analyze_result = dict()
+
+
+    def change_gender(self, gender):
+        self.gender = gender
+
+    def change_age(self, value: list[int]):
+        self.age = value[0]
+
+
+    def change_emotion(self,emotion):
+        self.emotion = emotion
+    def change_race(self,race):
+        self.race = race
 
 
 def webcam_display_component(ref: str) -> rx.Component:
@@ -136,32 +157,61 @@ def webcam_page() -> rx.Component:
             State.analyze_options,
             rx.hstack(
                 rx.vstack(
-                    rx.text("Age", font_weight="bold"),
-                    rx.input(default_value=State.age, placeholder="Age", read_only=True),
+                    rx.text("Age", font_weight="bold", font_size="20px"),  # Increase font size
+                    rx.heading(State.age, font_size="24px"),  # Increase heading font size
+                    rx.slider(
+                        default_value=40,
+                        on_value_commit=State.change_age,
+                        size="lg",
+                        # Increase the size of the slider
+                    ),
+                    width="200px",  # Increase width for more space
                     align_items="center",
                 ),
                 rx.vstack(
-                    rx.text("Gender", font_weight="bold"),
-                    rx.input(default_value=State.gender, placeholder="Gender", read_only=True),
+                    rx.text("Gender", font_weight="bold", font_size="20px"),  # Increase font size
+                    rx.select(
+                        ["Man", "Women", "Prefer not to say"],
+                        value=State.gender,
+                        on_change=State.change_gender,
+                        size="lg",
+                        width="150px"
+                        # Increase size of the select dropdown
+                    ),
                     align_items="center",
                 ),
                 rx.vstack(
-                    rx.text("Emotion", font_weight="bold"),
-                    rx.input(default_value=State.emotion, placeholder="Emotion", read_only=True),
+                    rx.text("Emotion", font_weight="bold", font_size="20px"),  # Increase font size
+                    rx.select(
+                        ["angry", "fear", "neutral", "sad", "disgust", "happy", "surprise",  "Prefer not to say"],
+                        value=State.emotion,
+                        on_change=State.change_emotion,
+                        size="lg",
+                        width="150px"
+                    ),
                     align_items="center",
                 ),
                 rx.vstack(
-                    rx.text("Race", font_weight="bold"),
-                    rx.input(default_value=State.race, placeholder="Race", read_only=True),
+                    rx.text("Race", font_weight="bold", font_size="20px"),  # Increase font size
+                    rx.select(
+                        ["asian", "white", "middle eastern", "indian", "latino", "black",  "Prefer not to say"],
+                        value=State.race,
+                        on_change=State.change_race,
+                        size="lg",
+                        width="150px"
+                        # Increase size of the select dropdown
+                    ),
                     align_items="center",
                 ),
-                spacing="25px",  # Space between each input group
+                spacing="30px",  # Space between each input group
                 justify="center",
                 align_items="center",
-                margin_top="20px",
+                margin_top="30px",
+                margin_bottom = "50px"  # Increase margin top
             ),
         ),
-        # Buttons for actions after analysis
+
+    # Buttons for actions after analysis
         rx.cond(
             State.options_after,
             rx.hstack(
@@ -178,6 +228,8 @@ def webcam_page() -> rx.Component:
                     padding="10px 20px",
                 ),
                 margin_top="20px",
+                margin_bottom="70px",
+
                 spacing="25px",
                 justify="center",
                 align_items="center",
