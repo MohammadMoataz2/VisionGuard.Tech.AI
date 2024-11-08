@@ -221,7 +221,7 @@ def webcam_page() -> rx.Component:
             rx.hstack(
                 rx.button(
                     "Continue",
-                    on_click=rx.redirect("/webcam-page"),
+                    on_click=rx.redirect("/search-engine-page"),
                     font_size="20px",
                     padding="10px 20px",
                 ),

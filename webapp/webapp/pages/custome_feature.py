@@ -65,6 +65,7 @@ def custom_feature_page() -> rx.Component:
                 width="200px",
                 margin_top="30px",
                 font_size="20px",
+                on_click=rx.redirect("/search-engine-page"),
                 color_scheme="teal",  # You can adjust the color scheme
                 align_self="center",
             ),
