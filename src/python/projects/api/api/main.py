@@ -7,9 +7,9 @@ from fastapi import Depends, FastAPI, Request, status
 from fastapi.exceptions import RequestValidationError
 from fastapi.openapi.docs import get_redoc_html, get_swagger_ui_html
 from fastapi.responses import JSONResponse
-from src.python.projects.api.api.core import settings
-from .api.core import security
-from src.python.projects.api.api.core.logger import setup_logger
+from api.core import settings
+from api.core import security
+from api.core.logger import setup_logger
 logger = setup_logger()
 
 logger.warning("FastAPI starting!")
@@ -44,6 +44,11 @@ async def validation_exception_handler(request: Request, exc: RequestValidationE
 @app.get("/", tags=[""])
 def read_root():
     return {"Vision": "Guard"}
+
+
+from .handlers import v1
+
+app.include_router(v1.api_router, prefix=settings.API_V1_STR)
 
 
 

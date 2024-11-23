@@ -19,10 +19,11 @@ class Settings(BaseSettings):
 
     API_V1_STR: str = "/api/v1"
 
-    APP_DEBUG: str = True
+    APP_DEBUG: bool = True
 
+    LOGGER_PREFIX: str = ""
 
-    DB_CONN_STRING: str
+    DB_CONN_STRING: str = ""
     DB_NAME: str = "dev"
     DB_MAX_CONNECTIONS: int = 10
     DB_MIN_CONNECTIONS: int = 10
@@ -31,10 +32,12 @@ class Settings(BaseSettings):
 
     class Config:
         case_sensitive = True
+        env_file = os.getenv("APP_DOTENV_PATH", ".env")  # Use a default `.env` file if not explicitly set
+        env_file_encoding = "utf-8"
 
 
 
-settings = Settings(_env_file=os.getenv("APP_DOTENV_PATH"))
+settings = Settings()
 if settings.APP_DEBUG:
     from pprint import pprint
 

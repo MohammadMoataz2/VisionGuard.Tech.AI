@@ -4,7 +4,6 @@ from motor.motor_asyncio import AsyncIOMotorClient
 
 from . import models
 
-
 class DBEngine:
     def __init__(self) -> None:
         self._client: AsyncIOMotorClient = None
@@ -25,3 +24,4 @@ class DBEngine:
 
 
 db_engine = DBEngine()
+

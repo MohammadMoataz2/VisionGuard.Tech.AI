@@ -69,8 +69,8 @@ class SearchEngineUser(BaseModel):
     user_id: UUID = Field(default_factory=uuid4)
     created_time: datetimenow = Field(default_factory=datetimenow.now)
     face_path : List[str] = Field(default_factory=list)
-    user_attributes: SearchEngineUserAttribute
-    user_attributes_other: SearchEngineUserAttributeOther
+    user_attributes: SearchEngineUserAttribute = Field(default=SearchEngineUserAttribute)
+    user_attributes_other: SearchEngineUserAttributeOther = Field(default=SearchEngineUserAttributeOther)
     user_query_result: List[SearchEngineUserResultQuery] = Field(default_factory=list)
 
 
