@@ -23,7 +23,7 @@ class Settings(BaseSettings):
 
     LOGGER_PREFIX: str = ""
 
-    DB_CONN_STRING: str = ""
+    DB_CONN_STRING: str = "mongodb://localhost/?maxIdleTimeMS=120000&appName=@visionguard@"
     DB_NAME: str = "dev"
     DB_MAX_CONNECTIONS: int = 10
     DB_MIN_CONNECTIONS: int = 10

@@ -13,9 +13,11 @@ class DBEngine:
         return self._client
 
     async def connect(self):
+        print(settings)
         self._client: AsyncIOMotorClient = AsyncIOMotorClient(
             settings.DB_CONN_STRING, maxPoolSize=settings.DB_MAX_CONNECTIONS, minPoolSize=settings.DB_MIN_CONNECTIONS
         )
+        print(models.beanie_models)
 
         await init_beanie(database=self._client[settings.DB_NAME], document_models=models.beanie_models)
 

@@ -33,9 +33,9 @@ class SearchEngineQuery(BaseSettings):
     def search(self, query):
         pass
 
-
-    class Config:
-        env_file = ".env"  # Specify the name of the environment file
+    #
+    # class Config:
+    #     env_file = ".env"  # Specify the name of the environment file
 
 
 class SearchEngineQueryBs4Google(SearchEngineQuery):
