@@ -28,14 +28,29 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     curl https://pyenv.run | bash && \
     apt-get clean && rm -rf /var/lib/apt/lists/*
 
-ENV MLFLOW_TRACKING_URI=http://localhost:5000
+# Environment Variables for Pyenv and MLflow
 ENV PYENV_ROOT="/root/.pyenv"
 ENV PATH="/root/.pyenv/bin:/root/.pyenv/shims:$PATH"
 
+# Expose the server port
 EXPOSE 5004
 
+# Install Python version via Pyenv
 RUN bash -c "source ~/.bashrc && pyenv install 3.11.11"
 
-RUN pip install mlflow virtualenv
+# Install Python dependencies
+RUN pip install mlflow virtualenv python-dotenv
 
-CMD ["bash", "-c", "source ~/.bashrc && mlflow models serve -m 'models:/DeepFaceAnalyzeModel/1' --port 5004"]
+# Copy application code
+COPY . /app
+
+# Set up to read environment variables from .env
+COPY .env /app/.env
+
+# Ensure .env is sourced when running the container
+RUN echo "export $(cat /app/.env | xargs)" >> /root/.bashrc
+
+# Command to serve the MLflow model using environment variables
+CMD ["bash", "-c", "source ~/.bashrc && \
+    mlflow models serve -m models:/$(echo $MODEL_NAME)@$(echo $MODEL_ALIAS) --port $MODEL_PORT"]
+

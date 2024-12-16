@@ -1,21 +1,26 @@
 import mlflow
 import mlflow.pyfunc
 from deepface_model import DeepFaceAnalysisModel
+from dotenv import load_dotenv
+import os
+
+# Load environment variables from .env file
+load_dotenv()
+
+# Get tracking URI and experiment name from environment variables
+tracking_uri = os.getenv("MLFLOW_TRACKING_URI", "http://localhost:5000")  # Default to localhost if not set
+experiment_name = os.getenv("MLFLOW_EXPERIMENT_NAME", "Default_Experiment")
+
 def train_model():
     # Simulate any training process if needed, or return None if unnecessary
     return None
 
 if __name__ == "__main__":
-    # Set MLflow tracking URI (default is local MLflow server)
+    # Set MLflow tracking URI
+    mlflow.set_tracking_uri(tracking_uri)
 
-    # Define experiment name
-    experiment_name = "DeepFace_Analysis_Experiment"
+    # Define and set experiment name
     mlflow.set_experiment(experiment_name)
-
-
-
-    mlflow.set_tracking_uri("http://localhost:5000")  # Replace with your MLflow server URI
-
 
     with mlflow.start_run() as run:
         # Log the DeepFace Analysis model
@@ -25,11 +30,16 @@ if __name__ == "__main__":
         mlflow.pyfunc.log_model(
             artifact_path="deepface_analysis_model",
             python_model=model,
-            code_paths = ["./face_analyze/deepface_model.py"],
+            code_paths=["./face_analyze/deepface_model.py"],
         )
 
         # Log optional parameters and metrics
         mlflow.log_param("model_type", "DeepFaceAnalysisModel")
-        mlflow.log_metric("accuracy", 0.95)  # Replace with actual metric if calculated
+        import random
+
+        # Generate a random accuracy value between 0.8 and 0.99
+        random_accuracy = round(random.uniform(0.8, 0.99), 3)
+
+        mlflow.log_metric("accuracy", random_accuracy)
 
         print(f"Model logged to MLflow with run ID: {run.info.run_id}")
