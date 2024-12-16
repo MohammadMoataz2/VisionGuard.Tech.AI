@@ -1,6 +1,5 @@
 import sys
 
-from dns.resolver import query
 
 
 from fastapi import Depends, FastAPI, Request, status

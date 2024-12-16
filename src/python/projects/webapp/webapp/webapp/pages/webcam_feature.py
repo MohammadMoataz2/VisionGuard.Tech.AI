@@ -41,7 +41,7 @@ class State(rx.State):
             self.images.append(image_bytes)
 
             # Simulate face detection
-            result = send_to_analyze(image_bytes, 5002)
+            result = send_to_analyze(image_bytes, "analyze", "face_detection")
             if result["predictions"][0]["face"]:
                 self.state = True
                 self.color = "green"
@@ -55,7 +55,7 @@ class State(rx.State):
         # Once the progress reaches 100%, analyze face attributes
         if self.progress_value >= 100 and self.analyze_face_state:
             self.loading_screen = True
-            self.face_analyze_result = send_to_analyze(self.images[0], 5001)
+            self.face_analyze_result = send_to_analyze(self.images[0], "analyze", "face_analyze")
             self.loading_screen = False
             self.age = str(self.face_analyze_result["predictions"][0]["age"])
             gender_predictions = self.face_analyze_result["predictions"][0]["gender"]
