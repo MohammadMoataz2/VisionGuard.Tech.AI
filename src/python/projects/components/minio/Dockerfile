@@ -1,4 +1,4 @@
-# minio/Dockerfile
+# minio/docker-compose.yml
 
 FROM minio/minio:latest
 

@@ -9,7 +9,7 @@ def setup_logger():
     log_format = logging.Formatter(
         f"[%(levelname)s] %(asctime)s - {f'{settings.LOGGER_PREFIX}::' if settings.LOGGER_PREFIX else ''}%(name)s = %(message)s"
     )
-    logger = logging.getLogger(settings.app_name)
+    logger = logging.getLogger(settings.api_app_name)
 
     logger.setLevel(logging.DEBUG)
 

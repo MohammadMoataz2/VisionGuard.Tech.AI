@@ -12,8 +12,8 @@ security = HTTPBasic()
 
 
 def verify_http_auth_basic(credentials: HTTPBasicCredentials = Depends(security)):
-    correct_username = secrets.compare_digest(credentials.username, settings.auth_username)
-    correct_password = secrets.compare_digest(credentials.password, settings.auth_password)
+    correct_username = secrets.compare_digest(credentials.username, settings.api_auth_username)
+    correct_password = secrets.compare_digest(credentials.password, settings.api_auth_password)
     if not (correct_username and correct_password):
         raise HTTPException(
             status_code=status.HTTP_401_UNAUTHORIZED,
@@ -24,8 +24,8 @@ def verify_http_auth_basic(credentials: HTTPBasicCredentials = Depends(security)
 
 
 def verify_admin_http_auth_basic(credentials: HTTPBasicCredentials = Depends(security)):
-    correct_username = secrets.compare_digest(credentials.username, settings.auth_admin_username)
-    correct_password = secrets.compare_digest(credentials.password, settings.auth_admin_password)
+    correct_username = secrets.compare_digest(credentials.username, settings.api_auth_admin_username)
+    correct_password = secrets.compare_digest(credentials.password, settings.api_auth_admin_password)
     if not (correct_username and correct_password):
         raise HTTPException(
             status_code=status.HTTP_401_UNAUTHORIZED,

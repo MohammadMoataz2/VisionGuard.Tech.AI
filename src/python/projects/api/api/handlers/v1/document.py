@@ -18,7 +18,7 @@ from api.api_interface.v1.schema import (
 
 # Initialize the router and logger
 router = APIRouter()
-logger = logging.getLogger(settings.app_name)
+logger = logging.getLogger(settings.api_app_name)
 
 # Endpoint to create a new user
 @router.post("/create_user")

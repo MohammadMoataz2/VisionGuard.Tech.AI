@@ -1,4 +1,4 @@
-# mysql/Dockerfile
+# mysql/docker-compose.yml
 
 FROM mysql:8.0
 

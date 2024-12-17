@@ -1,4 +1,4 @@
-# mlflow/Dockerfile
+# mlflow/docker-compose.yml
 
 FROM python:3.11-slim
 
@@ -8,7 +8,7 @@ WORKDIR /mlflow
 # Install dependencies
 RUN pip install mlflow pymysql boto3 psycopg2-binary cryptography
 
-# Add this line in your Dockerfile
+# Add this line in your docker-compose.yml
 
 # Set environment variables
 ENV MLFLOW_TRACKING_URI=http://0.0.0.0:5000

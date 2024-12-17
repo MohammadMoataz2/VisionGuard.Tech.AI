@@ -1,7 +1,4 @@
 import sys
-
-
-
 from fastapi import Depends, FastAPI, Request, status
 from fastapi.exceptions import RequestValidationError
 from fastapi.openapi.docs import get_redoc_html, get_swagger_ui_html
@@ -14,7 +11,7 @@ logger = setup_logger()
 logger.warning("FastAPI starting!")
 
 app = FastAPI(
-    title=settings.app_name,
+    title=settings.api_app_name,
     version=settings.app_version,
     docs_url=None,
     redoc_url=None,
@@ -47,7 +44,7 @@ def read_root():
 
 from .handlers import v1
 
-app.include_router(v1.api_router, prefix=settings.API_V1_STR)
+app.include_router(v1.api_router, prefix=settings.API_V_STR)
 
 
 
