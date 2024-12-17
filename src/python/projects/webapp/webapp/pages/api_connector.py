@@ -2,7 +2,7 @@ import base64
 import json
 import requests
 from requests.auth import HTTPBasicAuth
-from webapp.core import settings
+from webapp.core.settings import settings
 
 def send_to_analyze(encoded_image, tag, task_name):
     # Convert image bytes to base64
@@ -14,7 +14,7 @@ def send_to_analyze(encoded_image, tag, task_name):
     }
 
     response = requests.post(
-        f"{settings.API_CONN_STRING}{settings.API_PORT}{settings.API_V_STR}/{tag}/{task_name}",
+        f"{settings.API_CONN_STRING}{settings.API_V_STR}/{tag}/{task_name}",
             files=files,
         auth=HTTPBasicAuth(settings.api_auth_username, settings.api_auth_password)  # Include the HTTP Basic Authentication
     )

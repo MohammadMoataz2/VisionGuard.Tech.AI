@@ -19,7 +19,6 @@ class Settings(BaseSettings):
     API_V_STR: str = "/api/v1"
 
     API_CONN_STRING: str = "http://localhost"
-    API_PORT: str = ":8000"
 
     APP_DEBUG: bool = True
 
