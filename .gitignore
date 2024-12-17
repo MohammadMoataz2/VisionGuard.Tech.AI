@@ -19,7 +19,6 @@ pip-delete-this-directory.txt
 
 # Virtual environments
 venv/
-.env/
 
 # Jupyter Notebook checkpoints
 .ipynb_checkpoints
